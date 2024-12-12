@@ -1,7 +1,7 @@
 # User authentication settings in X Developer
 Website = https://developer.x.com.
 
-Create a new project in the free version.
+Create a new project (free version).
 
 ## App Permissions
 Read and write and Direct message = true
@@ -19,6 +19,7 @@ Website URL = https://localhost.dev
 Terms of service = https://localhost.dev
 
 Privacy policy = https://localhost.dev
+
 
 # Demonstration
 Videos below demonstrate how this ASP.NET MVC Core web app is used to post/get data from [X.com](https://x.com/)
