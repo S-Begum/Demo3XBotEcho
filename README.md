@@ -9,15 +9,15 @@
 
 ## Project settings
 
-# App Permissions
+### App Permissions
 Read and write and Direct message = true
 
 Request email from users = true
 
-# Type of App
+### Type of App
 Web App, Automated App or Bot = true
 
-# App info
+### App info
 Callback URI / Redirect URL = https://localhost:{your-port-number}/signin-twitter
 
 Website URL = https://localhost.dev
