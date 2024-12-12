@@ -1,0 +1,168 @@
+﻿@model XBotEcho.ViewModels.HomeVM;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">X Bot Echo</h1>
+    <p>Twitter Bot that scrapes twitter data and posts tweets using <a href="https://X.com">X</a> API (free version).</p>
+</div>
+<div class="row">
+    <div class="col">
+        @Html.ActionLink("Profile", "Index", "Home", new { KeyWord = "profile" }, new { @class = "btn btn-primary me-2" })
+     
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#recentTweetsSearch">
+            Search Tweets
+        </button>
+        <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#postTweet">
+            Post Tweet
+        </button>
+    </div>
+</div>
+<div class="row mb-5">
+    @if (Model.User != null)
+    {
+        <h2 class="my-2">Profile: </h2>
+        <div class="card mb-2" style="width: 18rem;">
+            <img src="@Model.User.ImageUrl" class="card-img-top rounded-circle" alt="Profile Image" />
+            <div class="card-body">
+                <p class="card-text">
+                    <b>@Model.User.FullName</b><br />
+                    @@@Model.User.UserName<br />
+                    @* Email: @Model.User.Email<br /> *@
+                    Location: @Model.User.Location<br />
+                    Created At: @Model.User.DateCreated.ToString("D")<br />
+
+                </p>
+            </div>
+        </div>
+    }
+    
+    @if (Model.SearchResult != null)
+    {
+        <h4 class="my-4">Search results for: '@Model.Query'</h4>
+        @foreach (var result in Model.SearchResult)
+        {
+            var xProfile = $"https://x.com/{result.Author.Username}";
+
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4 fw-light">
+                            AUTHOR:
+                        </div>
+                        <div class="col-8 fw-light">
+                            TWEET:
+                        </div>
+                        <div class="col-4 mt-2">
+                            <h5 class="card-title">@result.Author.Name</h5>
+                            <a href="@xProfile" class="link-primary text-decoration-none fw-bold" target="_blank">
+                                @@@result.Author.Username
+                            </a>
+                            @if (result.Author.Description != string.Empty)
+                            {
+                                <p class="mt-2"><b class="text-secondary">About:</b> @result.Author.Description</p>
+                            }
+                        </div>
+                        <div class="col-8 mt-4">
+                            <h6 class="card-subtitle text-body-secondary">@result.Text</h6>
+                            <p class="card-text mt-2"><small>ID: @result.Id</small></p>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <p class="card-text">
+                                <span class="fw-light">
+                                    PUBLIC METRICS: &nbsp;
+                                </span>
+                                Likes [<b>@result.PublicMetrics.LikeCount</b>] ·
+                                Retweets [<b>@result.PublicMetrics.RetweetCount</b>] ·
+                                Replies [<b>@result.PublicMetrics.ReplyCount</b>] ·
+                                Bookmarks [<b>@result.PublicMetrics.BookmarkCount</b>] ·
+                                Quotes [<b>@result.PublicMetrics.QuoteCount</b>] ·
+                                Impressions [<b>@result.PublicMetrics.ImpressionCount</b>] ·
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <h6 class="mb-5 text-secondary">
+            Count:  @Model.TweetSearchResult.Meta.ResultCount &nbsp;&nbsp;<b>·</b> &nbsp;&nbsp;
+            Newest ID: @Model.TweetSearchResult.Meta.NewestId &nbsp;&nbsp;<b>·</b> &nbsp;&nbsp;
+            Oldest ID: @Model.TweetSearchResult.Meta.OldestId &nbsp;&nbsp;<b>·</b> &nbsp;&nbsp;
+        </h6>
+    }    
+</div>
+
+
+<!-- Modal: Recent Tweets -->
+<div class="modal fade" id="recentTweetsSearch" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="lbl_RecentTweetsSearch" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lbl_RecentTweetsSearch">Search Recent Tweets on X</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-action="GetNewTweets" asp-controller="Home" class="row g-3 px-2" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-body row">
+                    <div class="col-12 mt-4">
+                        <input name="query" type="text" class="form-control" placeholder="Type text...">
+                    </div>                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Get Tweets</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Post Tweet -->
+<div class="modal fade" id="postTweet" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="lbl_postTweet" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="lbl_postTweet">Post a Tweet to X</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" asp-action="SendNewTweet" asp-controller="Home" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-body row">
+                    <div class="col-12 mb-2">
+                        <textarea asp-for="Tweet.Text" class="form-control" rows="4" placeholder="Type text..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Post</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            const successMessge = '@Model.SuccessMsg';
+            const errorMessge = '@Model.ErrorMsg';            
+
+            if (successMessge != "") {
+                $(".alert-success").show();
+                $(".alert-success").text(successMessge);
+                $(".alert-success").fadeOut(5000)
+            }
+            else {
+                $(".alert-success").hide();
+            }
+            if (errorMessge != "") {
+                $(".alert-danger").show();
+                $(".alert-danger").text(errorMessge);
+                $(".alert-danger").fadeOut(20000);
+            }
+            else{
+                $(".alert-danger").hide();
+            }
+        });
+    </script>
+}
