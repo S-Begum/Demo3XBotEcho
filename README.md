@@ -1,11 +1,11 @@
 # User authentication settings in X Developer
-Website = https://developer.x.com.
+(1) Go to website = https://developer.x.com and log-in.
 
-(1) Create a new project (free version).  
+(2) Create a new project (free version).  
 
-(2) Configure project settings as described below and generate Access Key, Access Secret, Cliend ID and Client Secret.  
+(3) Configure project settings as described below and generate Access Key, Access Secret, Cliend ID and Client Secret.  
 
-(3) Add the keys/secrets in appsettings.json file.
+(34 Add the keys/secrets in appsettings.json file.
 
 ## Project settings
 
