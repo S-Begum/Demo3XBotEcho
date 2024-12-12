@@ -1,4 +1,4 @@
-Videos below demonstrate how the web app can post/get data from X.com
+Videos below demonstrate how this ASP.NET MVC Core web app is used to post/get data from [X.com](https://x.com/)
 
 ## Get profile information:
 https://github.com/user-attachments/assets/b4f29c4c-e9c6-4a22-8ef8-027648af8a8c
