@@ -1,8 +1,11 @@
-## User authentication settings in X Develper
-Website = https://developer.x.com 
+## User authentication settings in X Developer
+Website = https://developer.x.com.
+
 Create a new project in the free version.
-### App Persmisions
+
+### App Permissions
 Read and write and Direct message = true
+
 Request email from users = true
 
 ### Type of App
@@ -10,8 +13,11 @@ Web App, Automated App or Bot = true
 
 ### App info
 Callback URI / Redirect URL = https://localhost:{your-port-number}/signin-twitter
+
 Website URL = https://localhost.dev
+
 Terms of service = https://localhost.dev
+
 Privacy policy = https://localhost.dev
 
 ## Demonstration
