@@ -1,4 +1,4 @@
-# User authentication settings in X Developer
+# User Guide
 (1) Go to website = https://developer.x.com and log-in.
 
 (2) Create a new project (free version).  
