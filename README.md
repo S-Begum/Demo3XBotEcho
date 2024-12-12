@@ -5,7 +5,7 @@
 
 (3) Configure project settings as described below and generate Access Key, Access Secret, Cliend ID and Client Secret.  
 
-(34 Add the keys/secrets in appsettings.json file.
+(4) Add the keys/secrets in appsettings.json file.
 
 ## Project settings
 
