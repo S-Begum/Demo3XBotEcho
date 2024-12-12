@@ -1,17 +1,19 @@
 # User authentication settings in X Developer
 Website = https://developer.x.com.
 
-Create a new project (free version).
+Create a new project (free version).  Configure project settings as described below and generate Access Key, Access Secret, Cliend ID and Client Secret.  Add the keys/secrets in appsettings.json file.
 
-## App Permissions
+## Project settings
+
+# App Permissions
 Read and write and Direct message = true
 
 Request email from users = true
 
-## Type of App
+# Type of App
 Web App, Automated App or Bot = true
 
-## App info
+# App info
 Callback URI / Redirect URL = https://localhost:{your-port-number}/signin-twitter
 
 Website URL = https://localhost.dev
