@@ -1,17 +1,17 @@
-## User authentication settings in X Developer
+# User authentication settings in X Developer
 Website = https://developer.x.com.
 
 Create a new project in the free version.
 
-### App Permissions
+## App Permissions
 Read and write and Direct message = true
 
 Request email from users = true
 
-### Type of App
+## Type of App
 Web App, Automated App or Bot = true
 
-### App info
+## App info
 Callback URI / Redirect URL = https://localhost:{your-port-number}/signin-twitter
 
 Website URL = https://localhost.dev
@@ -20,7 +20,7 @@ Terms of service = https://localhost.dev
 
 Privacy policy = https://localhost.dev
 
-## Demonstration
+# Demonstration
 Videos below demonstrate how this ASP.NET MVC Core web app is used to post/get data from [X.com](https://x.com/)
 
 ### Get profile information
